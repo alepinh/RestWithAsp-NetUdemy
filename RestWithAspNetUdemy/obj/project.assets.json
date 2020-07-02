@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alexa\\OneDrive\\Documentos\\Udemy\\RestWithAsp-NetUdemy\\RestWithAspNetUdemy\\RestWithAspNetUdemy.csproj",
+      "projectUniqueName": "C:\\Users\\alexa\\OneDrive\\Documentos\\Udemy\\RestWithAsp-NetUdemy_Aula2\\RestWithAspNetUdemy\\RestWithAspNetUdemy.csproj",
       "projectName": "RestWithAspNetUdemy",
-      "projectPath": "C:\\Users\\alexa\\OneDrive\\Documentos\\Udemy\\RestWithAsp-NetUdemy\\RestWithAspNetUdemy\\RestWithAspNetUdemy.csproj",
+      "projectPath": "C:\\Users\\alexa\\OneDrive\\Documentos\\Udemy\\RestWithAsp-NetUdemy_Aula2\\RestWithAspNetUdemy\\RestWithAspNetUdemy.csproj",
       "packagesPath": "C:\\Users\\alexa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alexa\\OneDrive\\Documentos\\Udemy\\RestWithAsp-NetUdemy\\RestWithAspNetUdemy\\obj\\",
+      "outputPath": "C:\\Users\\alexa\\OneDrive\\Documentos\\Udemy\\RestWithAsp-NetUdemy_Aula2\\RestWithAspNetUdemy\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alexa\\AppData\\Roaming\\NuGet\\NuGet.Config",
