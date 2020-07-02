@@ -1,0 +1,4 @@
+C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAsp-NetUdemy_Aula2\obj\Release\netcoreapp3.1\RestWithAspNetUdemy.AssemblyInfoInputs.cache
+C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAsp-NetUdemy_Aula2\obj\Release\netcoreapp3.1\RestWithAspNetUdemy.AssemblyInfo.cs
+C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAsp-NetUdemy_Aula2\obj\Release\netcoreapp3.1\RestWithAspNetUdemy.csproj.CoreCompileInputs.cache
+C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAsp-NetUdemy_Aula2\obj\Release\netcoreapp3.1\RestWithAspNetUdemy.MvcApplicationPartsAssemblyInfo.cache

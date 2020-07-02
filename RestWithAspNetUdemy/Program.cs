@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace RestWithAspNetUdemy
 {
-    public class Program
+    public class xxx_Program
     {
         public static void Main(string[] args)
         {

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using RestWithAspNetUdemy.RestWithAspNetUdemy.Servicos.Implementacao;
 
 namespace RestWithAspNetUdemy
 {
@@ -26,6 +27,7 @@ namespace RestWithAspNetUdemy
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddScoped<IPessoaServico, PessoaServicoImplentacao>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
