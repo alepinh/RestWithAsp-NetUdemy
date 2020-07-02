@@ -7,7 +7,6 @@ C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdem
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\bin\Debug\netcoreapp3.1\RestWithAspNetUdemy.runtimeconfig.dev.json
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\bin\Debug\netcoreapp3.1\RestWithAspNetUdemy.dll
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\bin\Debug\netcoreapp3.1\RestWithAspNetUdemy.pdb
-C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.csprojAssemblyReference.cache
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.AssemblyInfoInputs.cache
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.AssemblyInfo.cs
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.csproj.CoreCompileInputs.cache
