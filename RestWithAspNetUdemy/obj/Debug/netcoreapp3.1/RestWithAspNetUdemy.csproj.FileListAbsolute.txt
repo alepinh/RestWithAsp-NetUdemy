@@ -17,3 +17,4 @@ C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdem
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.dll
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.pdb
 C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.genruntimeconfig.cache
+C:\Users\alexa\OneDrive\Documentos\Udemy\RestWithAsp-NetUdemy\RestWithAspNetUdemy\obj\Debug\netcoreapp3.1\RestWithAspNetUdemy.csprojAssemblyReference.cache

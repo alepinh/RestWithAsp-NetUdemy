@@ -20,6 +20,45 @@ namespace RestWithAspNetUdemy.Controllers
             return BadRequest("Entrada inválida");
         }
 
+        [HttpGet("Subtracao/{PrimeiroNumero}/{SegundoNumero}")]
+        public IActionResult Subtracao(string primeiroNumero, string segundoNumero)
+        {
+            if (Isnumeric(primeiroNumero) && Isnumeric(segundoNumero))
+            {
+                var sum = ConverterParaDecimal(primeiroNumero) - ConverterParaDecimal(segundoNumero);
+                return Ok(sum.ToString());
+
+            }
+
+            return BadRequest("Entrada inválida");
+        }
+
+        [HttpGet("Divisao/{PrimeiroNumero}/{SegundoNumero}")]
+        public IActionResult Divisao(string primeiroNumero, string segundoNumero)
+        {
+            if (Isnumeric(primeiroNumero) && Isnumeric(segundoNumero) && segundoNumero != "0")
+            {
+                var sum = ConverterParaDecimal(primeiroNumero) / ConverterParaDecimal(segundoNumero);
+                return Ok(sum.ToString());
+
+            }
+
+            return BadRequest("Entrada inválida");
+        }
+
+        [HttpGet("Multiplicacao/{PrimeiroNumero}/{SegundoNumero}")]
+        public IActionResult Mutiplicacao(string primeiroNumero, string segundoNumero)
+        {
+            if (Isnumeric(primeiroNumero) && Isnumeric(segundoNumero))
+            {
+                var sum = ConverterParaDecimal(primeiroNumero) * ConverterParaDecimal(segundoNumero);
+                return Ok(sum.ToString());
+
+            }
+
+            return BadRequest("Entrada inválida");
+        }
+
         private decimal ConverterParaDecimal(string Numero)
         {
             decimal decimalValue;
