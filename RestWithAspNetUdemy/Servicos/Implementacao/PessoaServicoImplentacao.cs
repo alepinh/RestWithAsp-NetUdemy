@@ -1,127 +1,61 @@
-﻿using RestWithAspNetUdemy.Model;
-using RestWithAspNetUdemy.Model.Contexto;
-using System;
+﻿using RestWithAspNetUdemy.Data.Converters;
+using RestWithAspNetUdemy.Data.VO;
+using RestWithAspNetUdemy.Model;
+using RestWithAspNetUdemy.Repository.Implementacao;
 using System.Collections.Generic;
-using System.IO.Pipelines;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace RestWithAspNetUdemy.RestWithAspNetUdemy.Servicos.Implementacao
+namespace RestWithAspNetUdemy.Servicos.Implementacao
 {
     public class PessoaServicoImplentacao : IPessoaServico
     {
         //private volatile int count;
 
-        private MySQLContexto _contexto;
-
-        public PessoaServicoImplentacao(MySQLContexto contexto)
+        private IPessoaRepository _repository;
+        private readonly PessoaConverter _converter;
+        public PessoaServicoImplentacao(IPessoaRepository repository)
         {
-            _contexto = contexto;
-        }
-
-        public Pessoa Atualizar(Pessoa pessoa)
-        {
-            if(!Exist(pessoa.id)) return new Pessoa();
-
-            var result = _contexto.Pessoas.SingleOrDefault(p => p.id.Equals(pessoa.id));
-
-            try
-            {
-                _contexto.Entry(result).CurrentValues.SetValues(pessoa);
-                _contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-            return pessoa;
+            _repository = repository;
+            _converter = new PessoaConverter();
 
         }
 
-        private bool Exist(long? id)
+        public PessoaVO Atualizar(PessoaVO pessoa)
         {
-            return _contexto.Pessoas.Any(p => p.id.Equals(id));
+           
+            var pessoaEntidade = _converter.Parse(pessoa);
+            pessoaEntidade = _repository.Atualizar(pessoaEntidade);
+            return _converter.Parse(pessoaEntidade);
+
+
         }
 
-        public Pessoa Criar(Pessoa pessoa)
+
+        public PessoaVO Criar(PessoaVO pessoa)
         {
-            try
-            {
-                _contexto.Add(pessoa);
-                _contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-
-            return pessoa;
+            var pessoaEntidade = _converter.Parse(pessoa);
+            pessoaEntidade = _repository.Criar(pessoaEntidade);
+            return _converter.Parse(pessoaEntidade);
         }
 
         public void Excluir(long Id)
         {
-
-            var result = _contexto.Pessoas.SingleOrDefault(p => p.id.Equals(Id));
-            try
-            {
-                if(result == null) _contexto.Pessoas.Remove(result);
-                _contexto.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+             _repository.Excluir(Id); 
+   
         }
 
-        public Pessoa LocalizarPorID(long Id)
+        public PessoaVO LocalizarPorID(long Id)
         {
-            return _contexto.Pessoas.SingleOrDefault(p => p.id.Equals(Id));
-            //return new Pessoa
-            //{
-            //    id =1,
-            //    Nome = "Alexandre",
-            //    sobreNome = "Pinheiro",
-            //    Endereco = "Rua Sàp Paulo, 1000",
-            //    Genero = "Masculino"
-            //};
+            return _converter.Parse(_repository.LocalizarPorID(Id));
+
         }
 
-        public List<Pessoa> LocalizarTodas()
+        public List<PessoaVO> LocalizarTodas()
         {
-            return _contexto.Pessoas.ToList();
+            return _converter.ParseList(_repository.LocalizarTodas());
 
-            //List<Pessoa> pessoas = new List<Pessoa>();
-
-            //for (int i = 0; i < 8; i++)
-            //{
-            //    Pessoa pessoa = MockPessoa(i);
-            //    pessoas.Add(pessoa);
-            //}
-
-            //return pessoas;
         }
 
-        //private Pessoa MockPessoa(int i)
-        //{
-        //    return new Pessoa
-        //    {
-        //        id = IncrementAndGet(),
-        //        Nome = "Pessoa nome " + i,
-        //        sobreNome = "Pessoa sobrenome " + i,
-        //        Endereco = "Alguma Rua " + i ,
-        //        Genero = "Genero " + i
-        //    };
-        //}
 
-        //private long IncrementAndGet()
-        //{
-            
-        //    return Interlocked.Increment(ref count);
-        //}
     }
 }

@@ -1,38 +1,106 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using MySql.Data.MySqlClient;
 using RestWithAspNetUdemy.Model.Contexto;
-using RestWithAspNetUdemy.RestWithAspNetUdemy.Servicos.Implementacao;
+using RestWithAspNetUdemy.Repository.Generic;
+using RestWithAspNetUdemy.Repository.Implementacao;
+using RestWithAspNetUdemy.Servicos.Implementacao;
+using Serilog;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace RestWithAspNetUdemy
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+       // public readonly ILogger _logger;
+        public IConfiguration _configuration { get; }
+        public IHostEnvironment _environment { get; }
+        public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
-            Configuration = configuration;
+            _configuration = configuration;
+            _environment = environment;
+            //_logger = logger;
         }
 
-        public IConfiguration Configuration { get; }
+
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connection = Configuration["MySQLConnection:MySQLConnection"];
-            services.AddDbContext<MySQLContexto>(options => options.UseMySql(connection));
+            var connectionString = _configuration["MySQLConnection:MySQLConnection"];
+            services.AddDbContext<MySQLContexto>(options => options.UseMySql(connectionString));
+
+            Log.Logger = new LoggerConfiguration()
+              .CreateLogger();
+
+            try
+            {
+                
+                IDbConnection dbConnection = new MySqlConnection(connectionString);
+
+                var evolve = new Evolve.Evolve(dbConnection, msg => Log.Information(msg))
+                {
+                    Locations = new[] { "DB/migrations" },
+                    IsEraseDisabled = true,
+                    Placeholders = new Dictionary<string, string>
+                    {
+                        ["${table4}"] = "table4"
+                    }
+
+                };
+
+                evolve.Migrate();
+            }
+            catch (System.Exception ex)
+            {
+                Log.Error("Falha na migracao da Banco de Dados", ex);
+                throw;
+            }
+
+            //if (_environment.IsDevelopment())
+            //{
+            //    try
+            //    {
+            //        //var evolveConnection = new MySql.Data.MySqlClient.MySqlConnection(connectionString);
+            //        //var cnx = new SqliteConnection(_configuration.GetConnectionString("restwithaspnetudemy"));
+
+            //        var evolve = new Evolve.Evolve(dbConnection, msg => _logger.LogInformation(msg))
+            //        {
+            //            Locations = new[] { "db/migrations" },
+            //            IsEraseDisabled = true,
+            //            Placeholders = new Dictionary<string, string>
+            //            {
+            //                ["${table4}"] = "table4"
+            //            }
+
+            //        };
+
+            //        evolve.Migrate();
+            //    }
+            //    catch (System.Exception ex)
+            //    {
+            //        _logger.LogCritical("Falha na migracao da Banco de Dados", ex);
+            //        throw;
+            //    }
+            //}
 
             services.AddControllers();
+
+            services.AddApiVersioning();
+
             services.AddScoped<IPessoaServico, PessoaServicoImplentacao>();
+            services.AddScoped<IPessoaRepository, PessoaRepositoryImplentacao>();
+
+            services.AddScoped<ILivroServico, LivroServicoImplentacao>();
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

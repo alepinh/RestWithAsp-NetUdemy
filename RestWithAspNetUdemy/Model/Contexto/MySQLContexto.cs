@@ -20,5 +20,6 @@ namespace RestWithAspNetUdemy.Model.Contexto
         }
 
         public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Livro> Livros { get; set; }
     }
 }

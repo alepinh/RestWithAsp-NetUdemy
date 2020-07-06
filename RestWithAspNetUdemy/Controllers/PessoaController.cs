@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestWithAspNetUdemy.Model;
-using RestWithAspNetUdemy.RestWithAspNetUdemy.Servicos.Implementacao;
+using RestWithAspNetUdemy.Data.VO;
+using RestWithAspNetUdemy.Servicos.Implementacao;
 
 namespace RestWithAspNetUdemy.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [ApiVersion("1")]
+    [Route("[controller]/v{version:apiVersion}/")]
+
     public class PessoaController : ControllerBase
     {
         private IPessoaServico _pessoaServico;
@@ -34,7 +36,7 @@ namespace RestWithAspNetUdemy.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Pessoa pessoa)
+        public ActionResult Post([FromBody] PessoaVO pessoa)
         {
             
             if (pessoa == null)
@@ -45,14 +47,18 @@ namespace RestWithAspNetUdemy.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] Pessoa pessoa)
+        public ActionResult Put([FromBody] PessoaVO pessoa)
         {
 
             if (pessoa == null)
                 return BadRequest();
 
-            return new ObjectResult(_pessoaServico.Atualizar(pessoa));
-
+            var pessoaAtualizada = _pessoaServico.Atualizar(pessoa);
+            
+            if (pessoaAtualizada == null) 
+                return BadRequest();
+            
+            return new ObjectResult(pessoaAtualizada);
         }
 
 

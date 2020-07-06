@@ -1,14 +1,14 @@
-﻿using RestWithAspNetUdemy.Model;
+﻿using RestWithAspNetUdemy.Data.VO;
 using System.Collections.Generic;
 
-namespace RestWithAspNetUdemy.RestWithAspNetUdemy.Servicos.Implementacao
+namespace RestWithAspNetUdemy.Servicos.Implementacao
 {
     public interface IPessoaServico
     {
-        Pessoa Criar(Pessoa pessoa);
-        Pessoa LocalizarPorID(long ID);
-        List<Pessoa> LocalizarTodas();
-        Pessoa Atualizar(Pessoa pessoa);
+        PessoaVO Criar(PessoaVO pessoa);
+        PessoaVO LocalizarPorID(long ID);
+        List<PessoaVO> LocalizarTodas();
+        PessoaVO Atualizar(PessoaVO pessoa);
         void Excluir(long Id);
     }
 }
